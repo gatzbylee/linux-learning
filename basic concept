@@ -1,0 +1,30 @@
+[gatzbylee@localhost~]$               gatzbylee是使用者名称部分 localhost是主机名称 ~是当前家目录 整个的代表当前目录
+                                      $代表普通用户 如果是#代表跟用户root
+echo "hello,linux"   类似于print函数 如果在后面加-n echo -n "hello" 则输出时不换行 或者在"\n\n"即是字符里的换行回车作用
+nano 会有自己的界面，里面可以输入文本，如果想要保存，可以ctrl+o填入文件名，回车保存，ctrl+g可以查看nano的帮助文档，ctrl+x退出文档
+
+上下键可以查看历史命令，tab建可以补全命令，连按两下会显示所有符合的命令都显示出。
+
+man manual的意思，man who 即可查看who的使用方法，synopsis 指令的使用格式 /time 用来查找关键字，q建用来退出man界面
+文档中包含九大部分1.可运行的指令或可执行文件的帮助文档 
+               2.系统核心可使用的函数与工具等帮助文档
+               3.一些常用的函数与库的帮助文档
+               4.设备文件的说明
+               5.配置文件或者某些文件的格式说明
+               6.游戏程序的帮助文档
+               7.管理与协议，如文件系统，网络协议的说明
+               8.系统管理员可用的管理命令的帮助文档
+               9.根系统核心有关的文件的帮助文档
+man 1 read 即是读第一块的帮助文档。
+
+su - root 切换根用户
+
+关机与重启 比较重要，因为一般linux都作为服务器使用
+shutdown -h time -h表示关机 time表时间
+shutdown -h 00:00 表示零点关机
+shutdown -h now 现在关机
+shutdown -h time ..... 可以向其他用户做通知
+-h 换成 -r就是换成重启的意思
+ctrl+c 可以取消关机命令，也可以用shutdown -c 来取消关机
+reboot等于shutdown -r now
+halt等于shutdown -h now
