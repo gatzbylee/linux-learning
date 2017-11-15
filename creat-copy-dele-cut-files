@@ -4,11 +4,32 @@ cp /tmp/hello ~/hallo 就是将hello文件拷贝到根目录（当前用户的�
 也可拷贝多个文件，在第二部分加空格就是另个文件了
 cp /tmp/file01 /tmp/file02 /tmp/file03 ~ 就是将file 01 02 03三个文件拷贝到根目录下
 也可以拷贝整个目录，但要在cp 后面加上 -r
-cp -r /tmp/dir01 ~ 将dir01目录全部拷贝到根目录下
+cp -r /tmp/dir01 ~ 将dir01目录全部拷贝到根目录下 ~后面可加用户名，表示相应用户的家目录下
 
 注意事项，当拷贝时有同名文件，系统会提示是否覆盖，选y再回车表示同意
 如果有多个重复文件，可以 /cp -f /tmp/file02 /tmp/file03 ~ 即可强制覆盖所有重名文件
 
 在拷贝文件后文件的权限可能会改变，比如用root用户拷贝gatz用户下的一个文件后，文件的拥有者和从属用户组都变成了root，
 这使得gatz用户对这个拷贝过的文件的一些权限丧失了。如果不想改变权限，需要
-cp -p /tmp/file01
+cp -p /tmp/file01 ~gatz 这就可以使拷贝过的文件权限不改变了 （前提条件是当前用户对此文件有写权限）
+
+mv(move)
+与cp命令用法几乎一样，区别是移动整个目录时不需要 -r
+mv /tmp/file01 ~
+mv /tmp/file02 /tmp/file03 ~gatz
+mv /tmp/dir01 ~
+可以用mv来重命名文件
+mv /tmp/file01 /tmp/file01_rename 就是把file01在当前目录下重命名为file01_rename
+
+rm(remove)
+只要在后面加上要删除的文件就可以了，可以是多个文件，也可以是整个目录
+rm /tmp/file01
+rm /tmp/file02 /tmp/file03 /tmp/file04
+rm -R /tmp/dir01 在删除整个目录时rm后面要加-R
+注意的是，在删除每个问件时系统都会提问确认删除，如果要批量删除，可以
+rm -fR /tmp/dir01 系统就不会提示确认是否删除了
+
+touch
+创建文件，会创建一个空文件
+touch /tmp/empty 即创建一个empty空文件
+touch 如果创建一个目录名字已有的文件，会改变此文件的时间戳（就是最近修改时间）
