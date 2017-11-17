@@ -1,0 +1,25 @@
+tar -cf
+压缩文件，但并没有数据压缩的功能，多个文件压缩成一个文件后，文件量反而会增大。还有压缩后源文件还在的。
+tar -cf /tmp/samplefile.tar /tmp/file01 /tmp/file02  samplefile即是压缩后的文件名 ，file01 file02即是压缩的文件，
+tar指令也可以压缩目录，只要把相应的位置换成目录名就行了。
+
+tar -tf ./samplefile.tar 即查看samplefile里的压缩文件目录
+
+tar -f ./samplefile.tar --delete tmp/file02        即删除打包文件里的file02文件，要注意的是1.这个delete前有两个--
+                                               2.在压缩文件时文件前要加/,而删除文件时，前面不要加/
+                                               3.删除的文件也是从源文件目录位置打，而不是samplefile.tar的文件位置
+                                            
+tar -f ./samplefile01.tar -A ./samplefile02.tar  即将两个压缩文件再合并。  
+tar -f ./samplefile.tar -r ~/fileA.txt 即向samplefile.tar 里再添加一个根目录下的fileA.txt文件
+
+tar -xf ./samplefile.tar 默认的是解压当前目录，但原来的samplefilr.tar还在
+tar -xf ./samplefile.tar -C ./sampledir -C就是在sampledir目录下进行解压，此时会从压缩文件从home开始压缩，
+比如sampledir在/home/gatz目录下，解压缩后目录路径就变成了/home/gatz/sampledir/home/gatz
+
+gzip 即是另种压缩文件，能压缩文件的大小
+gzip ./samplefile.tar 即可以这种压缩方式把上面的samplefile.tar集合文件压缩成samplefile.tar.gz压缩文件
+gzip -d ./samplefile.tar.gz 即解此压缩文件。 gzip有9个压缩等级，数字越大压缩程度越高，但时间越慢 gzip -9 ./samplefile 即是等级9压缩程度压缩
+
+gzip 与 tar 比较，tar可以打包，但无法压缩大小，gzip可以压缩大小，但只能打包单个文件，所以可以结合使用
+tar -czf ./samplefile.tar.gz ./file01 ./file02 ./file03 就可以让两个命令结合使用 ，就是把file01 02 03文件打包再压缩
+tar -xzf ./samplefile.tar.gz 就是解压缩和解包合并使用，注意解压缩后也是从开始的/home目录开始
