@@ -1,0 +1,24 @@
+locate 查找较快，但功能较弱
+locate 【查找的路径】【查找的关键字】
+locate .tar 查找所有为tar类型的文件
+locate 在/var/lib/mlocate文件夹中查找，这个文件夹包含所有文件名，但有时候会出现问题，因为这个文件夹不及时更新，若要更新下，
+可以用updatedb来更新
+
+find命令可以添加很多条件
+find 【查找范围】【查找条件】【动作】
+find / -name passwd 根据文件名来进行查找，这种是查找精确名称，而不是关键字，如果要找关键字，就要用到通配符了
+
+find /bin -type l 根据文件类型进行查找，在/bin目录下，查找符号链接文件。 d 目录文件 ，f 普通文件，c 字符设备文件，b 块设备文件，l 符号链接文件
+
+find /tmp -mtine -3 -ls 查找3天内动过的文件，如果把-3换成+7意思为7天以前动过的文件，改成4则代表第四天前那天改动过的文件。mmin代表分钟，不是天数，别的没啥区别
+
+find /tmp -size -3k -ls 查找小于3k字节的文件再tmp目录下，+100c代表大于100字节的文件
+
+find /tmp -user root -ls 查找属于root用户的文件
+find /tmp -uid 500 -ls 查找uid为500的用户的文件
+find /tmp -group stu -ls 查找从属于stu用户组的文件
+find /tmp -gid 0 -ls 查找gid为0的用户组的文件                   gid groupid uid usersid
+
+find /tmp -perm 754 -ls 查找文件权限为754的文件
+
+find /tmp \(**********\)  -exec rm -rf {} \; 星号内为多条件，exec代表执行，rm -rf具体执行的内容，{}代表即删除查找到的文件，\代表转义字符；
